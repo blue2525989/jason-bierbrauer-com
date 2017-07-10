@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    <body>
+	
+	<nav th:replace="fragments::nav"></nav>
+		
+	<div class="container">
+	<h1>Upload Images</h1>
+	 <!-- administration menu-->
+	<div th:replace="fragments::admin-menu"></div>
+					<hr/>
+		
+		<h2>Enter a new category for saving images.</h2>
+		<small id="fileHelp" class="form-text text-muted col-10">
+		For storing system images that will only be used internally and not listed items for sale, 
+		create category Name: system Type: system
+		<br/><br/> This will be ignored and not added to Items for sale menu.
+		</small>
+		<form class="form-group" action="#" method="POST">
+				<label>Name:</label><br />
+				<small id="fileHelp" class="form-text text-muted col-10">
+				This is what visitors to your website will see in the Items for Sale menu.
+				</small>
+				<br/>
+				<input type="text" name="name" class="form-control col-8"  
+				required="required" data-error="name is required." />
+				<div class="help-block with-errors"></div><br />
+				
+				<label>Type:</label><br />
+				<small id="fileHelp" class="form-text text-muted col-10">
+				This is how similar grouped items will be stored for search purposes.
+				</small>
+				<br/>
+				<input type="text" name="type" class="form-control col-8"  
+				required="required" data-error="type is required." />
+				<div class="help-block with-errors"></div><br />
+				<button type="submit" id="button">Add Image Type</button>
+				<br />
+		</form>
+		
+		        
+        <br/><br/>
+        <!-- delete based on ID -->
+        	<h2>Delete entry based on ID number</h2>
+			<form action="#" method="GET">
+				<label for="ID">ID:</label><br />
+				<input type="text" name="ID" class="ID"  
+				required="required" data-error="ID is required." />
+				<div class="help-block with-errors"></div><br />	
+				<h3>Click this button to delete entry</h3><br />
+				<button type="submit" id="button">Delete</button>
+				<br />
+			</form>
+				
+		<br/><br/>
+
+		<!-- list all for figuring out ID -->				
+			<h2>List all image types</h2>
+			<form action="/list-images-type" method="GET">
+				<button type="submit" id="button">List all</button><br />
+			</form>
+				
+				
+		<br/><br/><hr/>
+		
+		<br/>
+		<h2>Upload new files to storage.</h2>
+        <form class="form-group" action="#" method="POST" enctype="multipart/form-data">        
+	
+			<!-- list image types -->
+				<div class="form-group">	 	
+		        <select class="form-control col-6" name="type">
+		            <option  th:each="imgType : ${fullList}"
+		            th:value="${imgType.type}" th:text="${imgType.name}"></option>
+		        </select>
+			 	</div>
+			 	<br/>
+			 	<div class="form-group">
+			 		<input name="file" class="form-control-file col-8" type="file" id="file-chooser" 
+			 			required="required" data-error="File is required." />
+					<div class="help-block with-errors"></div> <br/>
+				
+			 		<small id="fileHelp" class="form-text text-muted">Select a image from your computer and choose a corresponding 
+			 		category to go along with it, then click Upload to S3 to save the image.</small>
+			 	<br/>
+			 	</div>
+			 	
+			 	<br/>
+			    <button type="submit" id="upload-button">Upload to S3</button>
+		</form>
+        
+        <br/><br/>
+        <!-- delete based on ID -->
+        	<h2>Delete entry based on ID number</h2>
+			<form action="#" method="GET">
+				<label for="ID">ID:</label><br />
+				<input type="text" name="ID" class="ID"  
+				required="required" data-error="ID is required." />
+				<div class="help-block with-errors"></div><br />	
+				<h3>Click this button to delete entry</h3><br />
+				<button type="submit" id="button">Delete</button>
+				<br />
+			</form>
+				
+		<br/><br/>
+
+		<!-- list all for figuring out ID -->				
+			<h2>List all images by category</h2>
+			<form action="/list-images" method="GET">
+			<!-- list image types -->
+				<div class="form-group">	 	
+		        <select class="form-control col-6" name="type">
+		            <option  th:each="imgType : ${fullList}"
+		            th:value="${imgType.type}" th:text="${imgType.name}"></option>
+		        </select>
+		        </div>
+		        <br/><br/>
+				<button type="submit" id="button">List all</button><br />
+			</form>
+				
+				
+		<br/><br/><hr/>
+			
+	
+	<!-- end container -->
+	</div>
+       <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+	
+
+    </body>
+</html>

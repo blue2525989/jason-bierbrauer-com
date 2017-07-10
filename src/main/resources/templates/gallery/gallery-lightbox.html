@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    <body>
+	
+	<nav th:replace="fragments::nav"></nav>
+	
+  <!-- jumbotron-->
+    <div th:replace="fragments::jumbotron">
+    </div>
+	
+	
+<div class="album text-muted">
+      <div class="container">
+
+    
+    <!-- javaScript light box -->
+    <div th:unless="${#lists.isEmpty(cardList)}">
+		
+		<div class="row">
+		  <div class="column" th:each="card, idx : ${cardList}">
+		    <img th:attr='src=${card.url},title=${card.headline},alt=${card.headline}' 
+		    th:onclick="'javascript:openModal();currentSlide(' + ${idx.index +1 } + ')'"
+		     class="hover-shadow" height="80%" width="80%"/>
+		     	<br/>
+		        <span th:text='${card.headline}'></span>
+		  </div>
+		</div>
+		
+		<div id="myModal" class="modal">
+		  <span class="close cursor" onclick="closeModal()">&times;</span>
+		  <div class="modal-content">
+		
+			<!-- add thymeleaf each -->
+		    <div align="center" class="mySlides" th:each="card, idx : ${cardList}">
+		      <div class="numbertext" th:inline="text">[[${idx.index+1}]]/[[${idx.size}]]</div>
+		        <img th:attr='src=${card.url},title=${card.headline}'
+		         th:alt="${card.headline}" />
+		        
+		        <br/><br/>
+			    <div class="caption-container">
+			      <p id="caption" th:text="${card.content}"></p>
+			    </div>
+		    
+		        <span th:text="${card.content}"></span>
+		        <br/><br/>
+		    </div>
+		
+		    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+		    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+		
+
+
+		<div class="row">
+		  <div class="column" th:each="card, idx : ${cardList}">
+		      		<img class="card-dots" th:attr='src=${card.url},title=${card.headline}'
+		      		th:alt="${card.headline}" 
+		      		th:onclick="'javascript:currentSlide(' + ${idx.index + 1} + ')'" 
+		      		height="70%" width="70%"/>
+		        <br/>
+		        <span th:text='${card.headline}'></span>
+		  </div>
+		</div>
+		
+		  </div>
+		</div>
+		<script src="js/lightbox-modal.js"></script>
+		<!-- end th:unless -->
+		</div>
+		<!-- if list is empty -->
+		<div th:if="${#lists.isEmpty(cardList)}">
+			<p>There are no images in the gallery currently.</p>
+		</div>
+
+	</div>
+</div>
+       <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+	
+
+    </body>
+</html>

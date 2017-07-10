@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    <body>
+	
+	<nav th:replace="fragments::nav"></nav>
+		
+	<div class="container">
+	<h1>Edit Inventory Page</h1>
+	 <!-- administration menu-->
+	<div th:replace="fragments::admin-menu"></div>
+	
+					<hr/>
+		
+		
+        <!-- form for top FEATURE  editing headline and content-->
+        <h2>Add a item to inventory</h2><br/>
+		<form class="form-group" action="#" method="post">  
+		
+		<small id="fileHelp" class="form-text text-muted col-10">
+		Add items to your inventory. Choose a catchy name with buzz words. Next enter a detailed 
+		description about the item. Then choose the corresponding image, category type and PayPal button 
+		to go with your item. Click Add Item and your finsihed!		
+		</small>
+		<br/>         
+        	<div class="form-group">
+			  <label>Enter a item name.</label>
+			  <br/>
+			  <div>
+			    <input class="form-control col-8" type="text" placeholder="Catchy Headline" name="headline"
+			     required="required" data-error="Headline is required." />
+			     <div class="help-block with-errors"></div>
+			  </div>
+			</div>
+			
+			<div class="form-group">
+			    <label>Enter a item description.</label>
+			    <br/>
+			    <textarea class="form-control col-10" name="content" rows="6"
+			    required="required" data-error="Content is required." ></textarea>
+			    <div class="help-block with-errors"></div>
+			  </div>
+	 	
+
+			  	<!-- add image from bucket-->
+			  	<div class="form-group">
+			  	<label>Select an image:</label>
+		        <select class="form-control col-6"  name="url">
+		            <option th:each="image : ${session.imageList}"
+		                    th:text="${image.name}"
+		                    th:value="${image.url}"></option>
+		        </select>
+			  </div>
+			  <br/><br/>
+				<!-- list image types -->
+
+			  	<div class="form-group">
+			  	<label>Select a Type:</label>
+		        <select class="form-control col-6"  name="type">
+		            <option  th:each="imgType : ${imgTypes}"
+		            th:value="${imgType.type}" th:text="${imgType.name}"></option>
+		        </select>
+		        </div>
+		        <br/>
+		        		        <br/>
+
+			  	<div class="form-group">
+			  	<label>Select a PayPal button:</label>
+		        <select class="form-control col-6"  name="button">
+		            <option th:each="button : ${session.buttonList}"
+		                    th:text="${button.name}"
+		                    th:value="${button.url}"></option>
+		        </select>
+		        </div>
+		        <br/>
+		        
+		     <div class="form-group">
+			  <label>Enter a Price: </label>
+			  
+			  <div>
+			    <input class="form-control col-4" type="text" placeholder="75.50" name="price"
+			     required="required" data-error="Price is required." />
+			     <div class="help-block with-errors"></div>
+			  </div>
+			</div>
+		        
+             <button type="submit" class="btn btn-success">Add Item</button> 
+        </form>  
+
+		<br/><br/><hr/>
+
+        
+        <br/><br/>
+        <!-- delete based on ID -->
+        	<h2>Delete entry based on ID number</h2>
+			<form action="#" method="GET">
+				<label for="ID">ID:</label><br />
+				<input type="text" name="ID" class="ID"  
+				required="required" data-error="ID is required." />
+				<div class="help-block with-errors"></div><br />	
+				<h3>Click this button to delete entry</h3><br />
+				<button type="submit" id="button">Delete</button>
+				<br />
+			</form>
+				
+		<br/><br/>
+
+		<!-- list all for figuring out ID -->				
+			<h2>List all</h2>
+			<form action="/list-items" method="GET">
+				<button type="submit" id="button">List all</button><br />
+			</form>
+				
+				
+		<br/><br/><hr/>
+
+	<!-- end container -->
+	</div>
+       <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+	
+
+    </body>
+</html>

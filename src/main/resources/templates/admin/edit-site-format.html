@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    <body>
+	
+	<nav th:replace="fragments::nav"></nav>
+		
+	<div class="container">
+	<h1>Edit Web site Internals</h1>
+	<br/>
+	 <!-- administration menu-->
+	<div th:replace="fragments::admin-menu"></div>
+	<hr/>
+        <!-- form for top FEATURE  editing headline and content-->
+        <h2>Edit various site features.</h2><br/>
+		<form class="form-group" action="#" method="POST">  
+		
+		<small id="fileHelp" class="form-text text-muted col-8">
+		This section is for editing the title displayed in the browser, the icon displayed, background color,
+		 and the meta description and keywords that search engines use to index your web site.<br/><br/>
+		The title is what will be displayed in the browser tab. Also the icon will be displayed there too. 
+		Make sure to keep the icon file size small to reduce page load times. Background color is entered 
+		starting with a &#35; and followed by 6 numbers and or letters.
+		<br/><br/>
+		The description is limited to around 150 characters so be brief. The keywords need to be separated 
+		by commas, be specific and use buzz words.	
+		</small>
+		<br/>         		        
+		     <div class="form-group">
+			  <label>Enter a Title: </label>
+			  
+			  <div>
+			    <input class="form-control col-4" type="text" placeholder="title" name="title"
+			     required="required" data-error="Title is required." />
+			     <div class="help-block with-errors"></div>
+			  </div>
+			</div>
+			
+			<div class="form-group">
+			  <label>Enter a Background color: </label>
+			  
+			  <small id="fileHelp" class="form-text text-muted col-8">
+			  This is an external link to a website that has a color chooser. Find the color you want 
+			  and then copy the &#35;ffffff number into this text area.
+			  
+			  <a target="_blank" href="http://htmlcolorcodes.com/">Color selector</a>
+			  </small>
+			  <br/>
+			  
+			  <div>
+			    <input class="form-control col-4" type="text" placeholder="&#35;ffffff" name="bgColor"
+			     required="required" data-error="Color is required." />
+			     <div class="help-block with-errors"></div>
+			  </div>
+			</div>
+			
+			
+		    <!-- add image from bucket-->
+			<div class="form-group">
+				<label>Select an icon:</label>
+		        <select class="form-control col-6"  name="iconUrl">
+		            <option th:each="image : ${session.imageList}"
+		                    th:text="${image.name}"
+		                    th:value="${image.url}"></option>
+		        </select>
+			  </div>
+			  <br/><br/>
+			  
+			<div class="form-group">
+			    <label>Enter a very brief description.</label>
+			    <br/>
+			    <textarea class="form-control col-10" name="metaDescription" rows="6"
+			    required="required" data-error="Content is required." ></textarea>
+			    <div class="help-block with-errors"></div>
+			  </div>
+			  
+			<div class="form-group">
+			    <label>Enter keywords separated by commas.</label>
+			    <br/>
+			    <textarea class="form-control col-10" name="metaKeywords" rows="6"
+			    required="required" data-error="Content is required." ></textarea>
+			    <div class="help-block with-errors"></div>
+			  </div>
+	 				  
+		        
+             <button type="submit" class="btn btn-success">Change format</button> 
+        </form>  
+
+		<br/><br/><hr/>
+
+        
+        <br/><br/>
+        <!-- delete based on ID -->
+        	<h2>Delete entry based on ID number</h2>
+			<form action="#" method="GET">
+				<label for="ID">ID:</label><br />
+				<input type="text" name="ID" class="ID"  
+				required="required" data-error="ID is required." />
+				<div class="help-block with-errors"></div><br />	
+				<h3>Click this button to delete entry</h3><br />
+				<button type="submit" id="button">Delete</button>
+				<br />
+			</form>
+				
+		<br/><br/>
+
+		<!-- list all for figuring out ID -->				
+			<h2>List all</h2>
+			<form action="/list-fragments" method="GET">
+				<button type="submit" id="button">List all</button><br />
+			</form>
+				
+				
+		<br/><br/><hr/>
+
+
+        
+    
+	<!-- end container -->
+	</div>
+       <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+	
+
+    </body>
+</html>

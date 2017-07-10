@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    <body>
+	
+	<nav th:replace="fragments::nav"></nav>
+	<!-- jumbotron-->
+    <div th:replace="fragments::jumbotron">
+    </div>
+    
+	
+ <!-- first feature -->
+	
+	<div class="container">
+	 <hr class="featurette-divider"/>
+
+      <div class="row featurette">
+        <div class="col-md-7" th:unless="${session.aboutMain == null}">
+          <h2 class="featurette-heading" th:utext="${session.aboutMain.headline}">
+          What your companies best at.</h2>
+          <p class="lead" th:utext="${session.aboutMain.content}">
+          	Here is a paragraph where you can describe something very interested. Talk about 
+          	what you have to offer the customer. Draw them in and generate some revenue!
+          </p>
+        </div>
+        <div class="col-md-5">
+        <!-- add the image from bucket -->
+        <img class="hover-shadow img-rounded" th:attr="src=${session.aboutMain.url},title=${session.aboutMain.headline},alt=${session.aboutMain.headline}" /><br/>
+            </div>
+      </div>   
+        
+        <div th:if="${session.aboutMain == null}">
+			<p>You have no bottom feature saved</p><br/>
+		</div>   
+      
+		
+	 <hr class="featurette-divider"/>
+	 
+	</div>
+       <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+	
+
+    </body>
+</html>

@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    <body>
+	
+	<nav th:replace="fragments::nav"></nav>
+		
+	<div class="container">
+	 <!-- administration menu-->
+	<div th:replace="fragments::admin-menu"></div>
+	<hr/>
+	
+			
+			<!-- this is where saved session shows up -->
+			<article>
+			<hr/>
+			<div align="center" th:if="${saved}">
+			<h1 th:inline="text">[[${saved}]]</h1>
+			<hr/>
+			</div>
+			
+			<div align="center" th:if="${session.adminrole == null}">
+			<h1 th:inline="text">Thanks for checking out Ticking Toy Bomb, Click a link to navigate around!</h1>
+			</div>
+			
+			<hr/>
+			</article>
+	
+	
+	
+	
+	</div>
+       <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+	
+
+    </body>
+</html>

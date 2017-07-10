@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    <body>
+	
+	<nav th:replace="fragments::nav"></nav>
+	<!-- jumbotron-->
+    <div th:replace="fragments::jumbotron">
+    </div>
+    
+	<!-- first feature -->
+	
+	<div class="container">
+	 <hr class="featurette-divider"/>
+
+      <div class="row featurette">
+        <div class="col-md-7" th:unless="${session.contactMain == null}">
+          <h2 class="featurette-heading" th:utext="${session.contactMain.headline}">
+          What your companies best at.</h2>
+          <p class="lead" th:utext="${session.contactMain.content}">
+          	Here is a paragraph where you can describe something very interested. Talk about 
+          	what you have to offer the customer. Draw them in and generate some revenue!
+          </p>
+        </div>
+        <div class="col-md-5">
+        <!-- add image from bucket -->
+        <img class="hover-shadow img-rounded" th:attr="src=${session.contactMain.url},title=${session.contactMain.headline},alt=${session.contactMain.headline}" /><br/>
+            </div>
+      </div>    
+        
+        <div th:if="${session.contactMain == null}">
+			<p>You have no top feature saved</p><br/>
+		</div>   
+      
+		
+	 <hr class="featurette-divider"/>
+	 
+	 </div>
+	 
+	<div class="container">
+	
+	<form id="contact-form" action="/sendEmail" role="form">
+
+	    <div class="messages"></div>
+	
+	    <div class="controls">
+	
+	        <div class="row">
+	            <div class="col-md-6">
+	                <div class="form-group">
+	                    <label for="form_name">Firstname *</label>
+	                    
+	                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required."/>
+	                    <div class="help-block with-errors"></div>
+	                </div>
+	            </div>
+	            <div class="col-md-6">
+	                <div class="form-group">
+	                    <label for="form_lastname">Lastname *</label>
+	                    <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required."/>
+	                    <div class="help-block with-errors"></div>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="row">
+	            <div class="col-md-6">
+	                <div class="form-group">
+	                    <label for="form_email">Email *</label>
+	                    <input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required."/>
+	                    <div class="help-block with-errors"></div>
+	                </div>
+	            </div>
+	            <div class="col-md-6">
+	                <div class="form-group">
+	                    <label for="form_phone">Phone</label>
+	                    <input id="form_phone" type="tel" name="phone" class="form-control" placeholder="Please enter your phone"/>
+	                    <div class="help-block with-errors"></div>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="row">
+	            <div class="col-md-12">
+	                <div class="form-group">
+	                    <label for="form_message">Message *</label>
+	                    <textarea id="form_message" name="message" class="form-control" placeholder="Message for me *" rows="4" required="required" data-error="Please,leave us a message."></textarea>
+	                    <div class="help-block with-errors"></div>
+	                </div>
+	            </div>
+	            <div class="col-md-12">
+	            <br/>
+	                <input type="submit" class="btn btn-success btn-send" value="Send message"/>
+	            </div>
+	        </div>
+	    </div>
+	
+	</form>
+
+	</div>
+	<br/><br/>
+	
+	<!-- put script at bottom of page for now -->
+       <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+	
+
+    </body>
+</html>

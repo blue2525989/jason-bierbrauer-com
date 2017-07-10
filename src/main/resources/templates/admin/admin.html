@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    <body>
+	
+	<nav th:replace="fragments::nav"></nav>
+		
+	<div class="container">
+	<h1>Administration Page</h1><br/>
+	<span th:inline="text">Welcome, [[${#httpServletRequest.remoteUser}]]</span>
+	<br/>
+	 <!-- administration menu-->
+	<div th:replace="fragments::admin-menu"></div>
+	<hr/>
+
+		<h2>Change username and password.</h2>
+        <form action="#" method="POST"> 
+        	    <small id="fileHelp" class="form-text text-muted">
+				This will change your personal login information. Your new username and password will 
+				take affect once logged out and back in.
+				</small>
+ 				<br/>
+			<input type="hidden" name="oldUsername" th:value="${#httpServletRequest.remoteUser}" /> 
+			   
+       		<div class="form-group">
+			  <label>Enter a new username.</label>
+			  <br/>
+			  <div class="col-6">
+			    <input class="form-control" type="text" placeholder="username" name="username"
+			     required="required" data-error="Username is required." />
+			     <div class="help-block with-errors"></div>
+			  </div>
+			</div>
+            
+           <div class="form-group">
+			  <label>Enter a new password.</label>
+			  <br/>
+			  <div class="col-6">
+			    <input class="form-control" type="text" placeholder="password" name="password"
+			     required="required" data-error="Password is required." />
+			     <div class="help-block with-errors"></div>
+			  </div>
+			</div>
+			    
+            <button type="submit" class="btn btn-success">Change username/password </button>
+        </form>
+        <br/>
+        
+        <h2>Change password.</h2>
+        <form action="#" method="POST"> 
+        		<small id="fileHelp" class="form-text text-muted">
+				This will change the password for the current account. The changes will take affect once logged out and back in.
+				</small>
+  				<br/>
+			<input type="hidden" name="oldUsername" th:value="${#httpServletRequest.remoteUser}" /> 
+			    
+               
+           <div class="form-group">
+			  <label>Enter a new password.</label>
+			  <br/>
+			  <div class="col-6">
+			    <input class="form-control" type="text" placeholder="password" name="password"
+			     required="required" data-error="Password is required." />
+			     <div class="help-block with-errors"></div>
+			  </div>
+			</div>
+			
+            <button type="submit" class="btn btn-success">Change password</button>
+        </form>
+        
+    <br/><br/><br/>
+    
+	<!-- end container -->
+	</div>
+       <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+	
+
+    </body>
+</html>

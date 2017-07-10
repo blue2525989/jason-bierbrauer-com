@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    <body>
+	
+	<nav th:replace="fragments::nav"></nav>
+		
+	<div class="container">
+	 <!-- administration menu-->
+	<div th:replace="fragments::admin-menu"></div>
+	
+					<hr/>
+
+			<article>
+		
+					<div th:unless="${#lists.isEmpty(listMain)}">
+						<dl th:each="update : ${listMain}">
+						<dt>	
+							<label>ID:</label>
+							<span th:if="${update.id}" th:text="${update.id}">ID: </span> <br/>
+							<span th:if="${update.id eq null}">No ID available</span> <br/>	
+							
+							<label>Icon Url:</label>
+							<span th:if="${update.iconUrl}" th:text="${update.iconUrl}">Icon URL: </span> <br/>
+							<span th:if="${update.iconUrl eq null}">No icon available</span> <br/>
+							
+							<!-- add the image from bucket -->
+       						<img th:attr="src=${update.iconUrl},title=${update.iconUrl},alt=${update.iconUrl}" /><br/>
+           					<br/>
+           					
+							<label>Title:</label>
+							<span th:if="${update.title}" th:text="${update.title}">Title: </span> <br/>
+							<span th:if="${update.title eq null}">No title available</span> <br/>
+							
+							<label>Meta Description:</label>
+							<span th:if="${update.metaDescription}" th:text="${update.metaDescription}">Description: </span> <br/>
+							<span th:if="${update.metaDescription eq null}">No description available</span> <br/>
+
+							<label>Meta Keywords:</label>
+							<span th:if="${update.metaKeywords}" th:text="${update.metaKeywords}">Keywords: </span> <br/>
+							<span th:if="${update.metaKeywords eq null}">No keywords available</span> <br/>
+
+							<label>Background color:</label>
+							<span th:if="${update.bgColor}" th:text="${update.bgColor}">Background color: </span> <br/>
+							<span th:if="${update.bgColor eq null}">No background color available</span> <br/>
+							
+						</dt>
+						</dl>
+					</div>
+					
+					<div th:if="${#lists.isEmpty(listMain)}">	
+						<p>You have no updates...</p>
+					</div>
+					
+					<hr/>
+				</article>
+	
+	
+	
+	
+	</div>
+       <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+	
+
+    </body>
+</html>

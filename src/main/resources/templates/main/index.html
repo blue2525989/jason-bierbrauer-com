@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    <body>
+	
+	<nav th:replace="fragments::nav"></nav>
+	
+    <!-- jumbotron-->
+    <div th:replace="fragments::jumbotron">
+    </div>
+    				
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4" th:unless="${session.card1 == null}">
+         <h2 th:text="${session.card1.headline}">headline</h2><br/>
+          <span th:utext="${session.card1.content}">content</span><br/>
+          
+          <p><a class="btn btn-secondary" href="/gallery" role="button">Project gallery &raquo;</a></p>
+        </div>
+        
+        <div th:if="${session.card1 == null}">
+			<p>You have no card saved</p><br/>
+		</div>
+				
+       <div class="col-md-4" th:unless="${session.card2 == null}">
+         <h2 th:text="${session.card2.headline}">headline</h2><br/>
+          <span th:utext="${session.card2.content}">content</span><br/>
+          
+           <p><a class="btn btn-secondary" href="/about" role="button">Learn about us &raquo;</a></p>
+       </div>
+       
+       <div th:if="${session.card2 == null}">
+			<p>You have no card saved</p><br/>
+		</div>
+        
+        <div class="col-md-4" th:unless="${session.card3 == null}">
+         <h2 th:text="${session.card3.headline}">headline</h2><br/>
+          <span th:utext="${session.card3.content}">content</span><br/>
+          
+           <p><a class="btn btn-secondary" href="/contact" role="button">Get in touch &raquo;</a></p>
+        </div>
+        
+        <div th:if="${session.card3 == null}">
+			<p>You have no card saved</p><br/>
+		</div>
+				
+      </div>
+      
+	</div>
+	
+	<!-- second row block of text with an image -->
+	
+	 <!-- first feature -->
+	
+	<div class="container">
+	 <hr class="featurette-divider"/>
+
+      <div class="row featurette">
+        <div class="col-md-7" th:unless="${session.featureMain == null}">
+          <h2 class="featurette-heading" th:text="${session.featureMain.headline}">
+          What your companies best at.</h2>
+          <p class="lead" th:utext="${session.featureMain.content}">
+          	Here is a paragraph where you can describe something very interested. Talk about 
+          	what you have to offer the customer. Draw them in and generate some revenue!
+          </p>
+        </div>
+        <div class="col-md-5">
+          <img class="hover-shadow img-rounded" th:attr="src=${session.featureMain.url},title=${session.featureMain.headline},alt=${session.featureMain.headline}" /><br/>
+           </div>
+      </div>     
+        
+        <div th:if="${session.featureMain == null}">
+			<p>You have no bottom feature saved</p><br/>
+		</div>   
+      
+		
+	 <hr class="featurette-divider"/>
+	 
+	</div>
+       <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+	
+
+    </body>
+</html>

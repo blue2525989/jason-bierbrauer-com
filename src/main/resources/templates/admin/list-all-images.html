@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    <body>
+	
+	<nav th:replace="fragments::nav"></nav>
+		
+	<div class="container">
+	 <!-- administration menu-->
+	<div th:replace="fragments::admin-menu"></div>
+					<hr/>
+
+			<article>
+					<!-- unless means do this unless this condition is met -->
+					<div th:unless="${#lists.isEmpty(listMain)}">
+						<dl th:each="update : ${listMain}">
+						<dt>	
+							<label>ID:</label>
+							<span th:if="${update.id}" th:text="${update.id}">ID: </span> <br/>
+							<span th:if="${update.id eq null}">No ID available</span> <br/>	
+							
+							<label>Type:</label>
+							<span th:if="${update.type}" th:text="${update.type}">Type: </span> <br/>
+							<span th:if="${update.type eq null}">No type available</span> <br/>
+							
+							<label>Headline:</label>
+							<span th:if="${update.name}" th:text="${update.name}">Name: </span> <br/>
+							<span th:if="${update.name eq null}">No name available</span> <br/>
+							
+							<label>Content:</label>
+							<span th:if="${update.url}" th:text="${update.url}">URL: </span> <br/>
+							<span th:if="${update.url eq null}">No URL available</span> <br/>
+							
+							<img th:attr="src=${update.url},title=${update.url},alt=${update.name}"/><br/>
+						</dt>
+						</dl>
+					</div>
+					
+					<div th:if="${#lists.isEmpty(listMain)}">	
+						<p>You have no updates...</p>
+					</div>
+					
+					<hr/>
+				</article>
+	
+	
+	
+	
+	</div>
+       <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+	
+
+    </body>
+</html>

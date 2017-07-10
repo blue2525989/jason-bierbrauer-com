@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    <body>
+	
+	<nav th:replace="fragments::nav"></nav>
+		
+	<div class="container">
+	<h1>Edit Home Page</h1>
+	 <!-- administration menu-->
+	<div th:replace="fragments::admin-menu"></div>
+	
+					<hr/>
+					
+		<!-- centering up forms -->
+		<div class="blue-form-control">
+		
+		
+		<!-- form for editing JUMBOTRON headline and content-->
+		<h2>Edit JumboTron</h2><br/>
+		<form class="form-group" action="#" method="post">   
+				<small id="fileHelp" class="form-text text-muted col-10">
+				You have the option of entering text to impose over your banner. The headline will be 
+				large, bold and shadowed. The content will be normal sized font. Both text is shown in 
+				white.<br/><br/>
+				Also if no content is needed, add a blank space in each text area. If more space is needed 
+				to accomidate the banner image, use the HTML tag &lt;br &#x2F;&gt; NOTE: the &#x2F; is important 
+				to close the tag.
+				</small>
+				<br/>     
+       		<div class="form-group">
+			  <label>Enter a Headline for the JumboTron.</label>
+			  <br/>
+			  <div>
+			    <input class="form-control col-8" type="text" placeholder="Catchy Headline" name="headline"
+			     required="required" data-error="Headline is required."  />
+			    <div class="help-block with-errors"></div>
+			  </div>
+			</div>
+			
+			<div class="form-group">
+			    <span>Enter content to impose on Jumbotron.</span>
+			    <br/>
+			    <textarea class="form-control col-10" name="content" rows="6"
+			     required="required" data-error="Content is required." ></textarea>
+			    <div class="help-block with-errors"></div>
+			  </div>
+			  			  			  <!-- add image from bucket-->
+			  	
+
+			  	<!-- add image from bucket-->
+			  	<div class="form-group">
+			  	<label>Select an image:</label>
+		        <select class="form-control col-6"  name="url">
+		            <option th:each="image : ${session.imageList}"
+		                    th:text="${image.name}"
+		                    th:value="${image.url}"></option>
+		        </select>
+			  </div>
+			  <br/><br/>
+			  
+             <button type="submit" class="btn btn-success">Edit JumboTron</button> 
+        </form> 
+        
+        <br/><br/>
+        <!-- delete based on ID -->
+        	<h2>Delete entry based on ID number</h2>
+			<form action="#" method="GET">
+				<label for="ID">ID:</label><br />
+				<input type="text" name="ID" class="ID"  
+				required="required" data-error="ID is required." />
+				<div class="help-block with-errors"></div><br />	
+				<h3>Click this button to delete entry</h3><br />
+				<button type="submit" id="button">Delete</button>
+				<br />
+			</form>
+				
+		<br/><br/>
+
+		<!-- list all for figuring out ID -->				
+			<h2>List all</h2>
+			<form action="/list-jumbo" method="GET">
+				<button type="submit" id="button">List all</button><br />
+			</form>
+				
+				
+		<br/><br/><hr/>
+		<br/><br/>
+		<h1>Edit Contact, About us and Gallery cards.</h1>
+		<br/>
+		<small id="fileHelp" class="form-text text-muted">
+		This section lets you edit the content cards on the main page directing visitors 
+		to your Contact, About us and Gallery pages. 	
+		</small>
+		<br/>  
+        <!-- form for  GALLERY CARD editing headline and content-->
+        <h2>Edit Gallery Card</h2><br/>
+		<form class="form-group" action="#" method="post">        
+       		<div>
+			  <label>Enter a Headline for Gallery Card.</label>
+			  <br/>
+			  <div>
+			    <input class="form-control col-8" type="text" placeholder="Catchy Headline" name="headline"
+			     required="required" data-error="Headline is required."  />
+			    <div class="help-block with-errors"></div>
+			  </div>
+			</div>
+			
+			<div class="form-group">
+			    <span>Enter main content.</span>
+			    <br/>
+			    <textarea class="form-control col-10" name="content" rows="6"
+			     required="required" data-error="Content is required." ></textarea>
+			    <div class="help-block with-errors"></div>
+			  </div>
+			  
+			  <input type="hidden" name="type" value="card1"/>
+             <button type="submit" class="btn btn-success">Edit Gallery Card</button> 
+        </form> 
+        
+				
+		<br/><br/><hr/>
+        <!-- form for  ABOUT US CARD editing headline and content-->
+        <h2>Edit About us Card</h2><br/>
+		<form class="form-group" action="#" method="post">        
+       		<div>
+			  <label>Enter a Headline for About Us Card.</label>
+			  <br/>
+			  <div>
+			    <input class="form-control col-8" type="text" placeholder="Catchy Headline" name="headline"
+			     required="required" data-error="Headline is required."  />
+			    <div class="help-block with-errors"></div>
+			  </div>
+			</div>
+			
+			<div class="form-group">
+			    <span>Enter main content.</span>
+			    <br/>
+			    <textarea class="form-control col-10" name="content" rows="6"
+			     required="required" data-error="Content is required." ></textarea>
+			    <div class="help-block with-errors"></div>
+			  </div>
+
+			  <input type="hidden" name="type" value="card2"/>
+             <button type="submit" class="btn btn-success">Edit About Us Card</button> 
+        </form> 
+        
+
+		<br/><br/><hr/>
+		
+        <!-- form for  CONTACT CARD editing headline and content-->
+        <h2>Edit Contact Us Card</h2><br/>
+		<form class="form-group" action="#" method="post">       
+       		<div>
+			  <label>Enter a Headline for Contact Card.</label>
+			  <br/>
+			  <div>
+			    <input class="form-control col-8" type="text" placeholder="Catchy Headline" name="headline"
+			     required="required" data-error="Headline is required."  />
+			    <div class="help-block with-errors"></div>
+			  </div>
+			</div>
+			
+			<div class="form-group">
+			    <span>Enter main content.</span>
+			    <br/>
+			    <textarea class="form-control col-10" name="content" rows="6"
+			     required="required" data-error="Content is required." ></textarea>
+			    <div class="help-block with-errors"></div>
+			  </div>
+
+			  <input type="hidden" name="type" value="card3"/>
+             <button type="submit" class="btn btn-success">Edit Contact Card</button> 
+        </form> 
+        
+        <br/><br/>
+        <!-- delete based on ID -->
+        	<h2>Delete entry based on ID number</h2>
+			<form action="#" method="GET">
+				<label for="ID">ID:</label><br />
+				<input type="text" name="ID" class="ID"  
+				required="required" data-error="ID is required." />
+				<div class="help-block with-errors"></div><br />	
+				<h3>Click this button to delete entry</h3><br />
+				<button type="submit" id="button">Delete</button>
+				<br />
+			</form>
+				
+		<br/><br/>
+
+		<!-- list all for figuring out ID -->				
+			<h2>List all</h2>
+			<form action="/list-card" method="GET">
+				<button type="submit" id="button">List all</button><br />
+			</form>
+				
+				
+		<br/><br/><hr/>
+		
+        <!-- form for BOTTOM FEATURE  editing headline and content-->
+        <h1>Edit Bottom Feature</h1><br/>
+		<form class="form-group" action="#" method="post">  
+		
+		<small id="fileHelp" class="form-text text-muted col-10">
+		This section lets you highlight your main service on your main page. Add a picture with 
+		a flashy headline to catch peoples attention and then describe what you have to offer.		
+		</small>
+		<br/>         
+       		<div>
+			  <label>Enter a Headline.</label>
+			  <br/>
+			  <div>
+			    <input class="form-control col-8" type="text" placeholder="Catchy Headline" name="headline"
+			     required="required" data-error="Headline is required." />
+			     <div class="help-block with-errors"></div>
+			  </div>
+			</div>
+			
+			<div class="form-group">
+			    <label>Enter main content.</label>
+			    <br/>
+			    <textarea class="form-control col-10" name="content" rows="6"
+			    required="required" data-error="Content is required." ></textarea>
+			    <div class="help-block with-errors"></div>
+			  </div>
+			  	
+			  	
+
+			  	<!-- add image from bucket-->
+			  	<div class="form-group">
+			  	<label>Select an image:</label>
+		        <select class="form-control col-6"  name="url">
+		            <option th:each="image : ${session.imageList}"
+		                    th:text="${image.name}"
+		                    th:value="${image.url}"></option>
+		        </select>
+			  </div>
+			  <br/><br/>
+			  
+             <button type="submit" class="btn btn-success">Edit Bottom Feature</button> 
+        </form> 
+        
+        <br/><br/>
+        <!-- delete based on ID -->
+        	<h2>Delete entry based on ID number</h2>
+			<form action="#" method="GET">
+				<label for="ID">ID:</label><br />
+				<input type="text" name="ID" class="ID"  
+				required="required" data-error="ID is required." />
+				<div class="help-block with-errors"></div><br />	
+				
+				<h3>Click this button to delete entry</h3><br />
+				<button type="submit" id="button">Delete</button>
+				<br />
+			</form>
+				
+		<br/><br/>
+
+		<!-- list all for figuring out ID -->				
+			<h2>List all</h2>
+			<form action="/list-feature" method="GET">
+				<button type="submit" id="button">List all</button><br />
+			</form>
+				
+				
+		<br/><br/><hr/>
+
+	<!-- end centering of forms -->
+	</div>
+	
+	
+	
+	<!-- end container -->
+	</div>
+       <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+	
+
+    </body>
+</html>

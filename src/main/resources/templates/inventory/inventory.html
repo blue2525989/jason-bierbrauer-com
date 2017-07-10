@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    <body>
+	
+	<nav th:replace="fragments::nav"></nav>
+	<!-- jumbotron-->
+    <div th:replace="fragments::jumbotron">
+    </div>
+    
+
+	<div class="container">
+	
+	<!-- change this to a model and pass as a list -->
+	<!-- first feature -->
+	
+	
+	<div th:unless="${#lists.isEmpty(items)}">
+	<div th:each="item : ${items}">
+
+						<!-- add as a model and not session -->
+     <div class="row featurette">
+        <div class="col-md-7">
+         	 <h2 class="featurette-heading" th:text="${item.headline}">
+         	 What your companies best at.</h2>
+         	 <p class="lead" th:utext="${item.content}">
+         	 </p>
+         	<strong>Price: </strong><span th:text="${item.price}"></span>
+         	<br/>
+         	<br/>
+         	<h3>Order your item today!</h3><br/>
+         <div class="col-md-3">
+         	<label>Secure Payment with PayPal.</label><br/>
+         	<span th:utext="${item.button}"></span>
+         </div>
+        </div>
+        
+		
+        <div class="col-md-5">
+        <!-- add the image from bucket -->
+        <img class="hover-shadow img-rounded" th:attr="src=${item.url},title=${item.headline},alt=${item.headline}" /><br/>
+         </div>
+         
+      	</div>
+      	<br/><br/><hr/><br/>
+		</div>
+		</div>
+					
+					<div th:if="${#lists.isEmpty(items)}">	
+						<p>There are no items in the inventory matching this description.</p>
+					</div>
+					
+
+		
+	 <hr class="featurette-divider"/>
+
+
+</div>
+       <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+	
+
+    </body>
+</html>

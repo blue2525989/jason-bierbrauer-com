@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    <body>
+	
+	<nav th:replace="fragments::nav"></nav>
+		
+	<div class="container">
+	<h1>Edit About Us Page</h1>
+	 <!-- administration menu-->
+	<div th:replace="fragments::admin-menu"></div>
+		<hr/>
+
+
+		<!-- form for editing headline and content-->
+		<h2>Edit the content on About us page</h2>
+		<form class="form-group" action="#" method="post">        
+       		<div class="form-group">
+			  <label>Enter a Headline.</label>
+			  <br/>
+			  <div>
+			    <input class="form-control col-8" type="text" placeholder="Catchy Headline" name="headline"
+			     required="required" data-error="Headline is required." />
+			     <div class="help-block with-errors"></div>
+			  </div>
+			</div>
+			
+			<div class="form-group">
+			    <label>Enter a main content.</label>
+			    <br/>
+			    <small id="fileHelp" class="form-text text-muted">
+				Enter some interesting content about your company to get people talking about your business.
+				</small>
+				<br/>
+			    <textarea class="form-control col-10" name="content" rows="6"
+			    required="required" data-error="Content is required." ></textarea>
+			    <div class="help-block with-errors"></div>
+			  </div>
+
+			  	<!-- add image from bucket-->
+			  	<div class="form-group">
+			  	<label>Select an image:</label>
+		        <select class="form-control col-6"  name="url">
+		            <option th:each="image : ${session.imageList}"
+		                    th:text="${image.name}"
+		                    th:value="${image.url}"></option>
+		        </select>
+			  </div>
+			  <br/><br/>
+			  
+             <button type="submit" class="btn btn-success">Edit Paragraph</button> 
+        </form> 
+        
+        <br/><br/>
+        <!-- delete based on ID -->
+        	<h2>Delete entry based on ID number</h2>
+			<form action="#" method="GET">
+				<label for="ID">ID:</label><br />
+				<input type="text" name="ID" class="ID"  
+				required="required" data-error="ID is required." />
+				<div class="help-block with-errors"></div><br />	
+				<h3>Click this button to delete entry</h3><br />
+				<button type="submit" id="button">Delete</button>
+				<br />
+			</form>
+				
+		<br/><br/>
+
+		<!-- list all for figuring out ID -->				
+			<h2>List all</h2>
+			<form action="/list-about-content" method="GET">
+				<button type="submit" id="button">List all</button><br />
+			</form>
+				
+				
+		<br/><br/><hr/>
+		
+	
+	
+	
+	
+	<!-- end container -->
+	</div>
+       <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+	
+
+    </body>
+</html>

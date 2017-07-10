@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments::head"></head>
+    <body>
+	
+	<nav th:replace="fragments::nav"></nav>
+	
+    <!-- jumbotron-->
+    <div th:replace="fragments::jumbotron">
+    </div>
+    
+	<!-- can print javaScript to tags with ids -->
+	<div id="results"></div>
+	
+				
+    <div class="container">
+	
+	<!-- adding date from script -->
+	<div align="center"><span id="date"></span></div><br/><br/>
+	
+	 <!-- administration menu, hard coded so wont confuse fragments.html-->
+		    <nav id="admin">
+				<hr/>
+				<ul>
+				<li><a href="/admin"><button>Administration page</button></a></li>
+				<li><a href="/admin/edit-home"><button>Edit Home page</button></a></li>
+				<li><a href="/admin/edit-services"><button>Edit Services page</button></a></li>
+				<li><a href="/admin/edit-about"><button>Edit  About us page</button></a></li>
+				<li><a href="/admin/edit-contact"><button>Edit Contact page</button></a></li>
+				<li><a href="/admin/edit-gallery"><button>Edit gallery page</button></a></li>
+				</ul>
+				<hr/>
+			</nav>
+
+	
+	
+	
+	
+	
+	</div>
+	<!-- put script at bottom of page for now -->
+	<script src="js/fun01.js"></script>
+       <!-- start of footer -->
+ 	<footer th:replace="fragments :: footer"></footer>
+	
+
+    </body>
+</html>
